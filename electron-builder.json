@@ -1,0 +1,109 @@
+{
+  "appId": "com.cadbim.platform",
+  "productName": "CAD/BIM Cloud Platform",
+  "directories": {
+    "output": "release",
+    "buildResources": "build"
+  },
+  "files": [
+    "dist/**/*",
+    "electron.cjs",
+    "package.json",
+    "public/**/*"
+  ],
+  "extraMetadata": {
+    "main": "electron.cjs"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icon.ico",
+    "artifactName": "CAD-BIM-Platform-Setup-${version}.${ext}",
+    "publisherName": "CAD/BIM Solutions",
+    "verifyUpdateCodeSignature": false
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "perMachine": true,
+    "allowElevation": true,
+    "installerIcon": "build/icon.ico",
+    "uninstallerIcon": "build/icon.ico",
+    "installerHeaderIcon": "build/icon.ico",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "CAD/BIM Platform",
+    "include": "build/installer.nsh",
+    "deleteAppDataOnUninstall": false
+  },
+  "mac": {
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      },
+      {
+        "target": "zip",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "category": "public.app-category.graphics-design",
+    "icon": "build/icon.icns",
+    "artifactName": "CAD-BIM-Platform-${version}-${arch}.${ext}",
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist"
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ],
+    "title": "CAD/BIM Cloud Platform ${version}",
+    "background": "build/dmg-background.png",
+    "window": {
+      "width": 540,
+      "height": 380
+    }
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb",
+      "rpm",
+      "snap"
+    ],
+    "category": "Graphics;Engineering",
+    "icon": "build/icons",
+    "artifactName": "CAD-BIM-Platform-${version}-${arch}.${ext}",
+    "desktop": {
+      "Name": "CAD/BIM Cloud Platform",
+      "GenericName": "CAD/BIM Editor",
+      "Comment": "Professional Architecture & Engineering Management",
+      "Categories": "Graphics;Engineering;VectorGraphics;",
+      "Keywords": "cad;bim;architecture;engineering;design;3d;",
+      "StartupWMClass": "cad-bim-platform"
+    }
+  },
+  "snap": {
+    "confinement": "classic",
+    "grade": "stable"
+  }
+}
